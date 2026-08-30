@@ -1,0 +1,259 @@
+{
+  "created_at": "2026-08-30T13:13:08.932308+00:00",
+  "metadata": {
+    "prompt_version": "v1",
+    "note": "post-markdown-fix baseline"
+  },
+  "results_by_id": {
+    "q001": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q002": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q003": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q004": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q005": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": true
+    },
+    "q006": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q007": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q008": {
+      "passed": false,
+      "verdict": "needs_manual_review",
+      "hallucinated": true
+    },
+    "q009": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": true
+    },
+    "q010": {
+      "passed": false,
+      "verdict": "needs_manual_review",
+      "hallucinated": false
+    },
+    "q011": {
+      "passed": false,
+      "verdict": "needs_manual_review",
+      "hallucinated": false
+    },
+    "q012": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q013": {
+      "passed": false,
+      "verdict": "needs_manual_review",
+      "hallucinated": false
+    },
+    "q014": {
+      "passed": false,
+      "verdict": "needs_manual_review",
+      "hallucinated": false
+    },
+    "q015": {
+      "passed": false,
+      "verdict": "needs_manual_review",
+      "hallucinated": false
+    },
+    "q016": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": false
+    },
+    "q017": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": false
+    },
+    "q018": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": false
+    },
+    "q019": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q020": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": true
+    },
+    "q021": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": true
+    },
+    "q022": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q023": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q024": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q025": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": false
+    },
+    "q026": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q027": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": true
+    },
+    "q028": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q029": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q030": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q031": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": true
+    },
+    "q032": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": true
+    },
+    "q033": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": true
+    },
+    "q034": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q035": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q036": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": true
+    },
+    "q037": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": true
+    },
+    "q038": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q039": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q040": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q041": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q042": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": false
+    },
+    "q043": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": false
+    },
+    "q044": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q045": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": true
+    },
+    "q046": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": false
+    },
+    "q047": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": true
+    },
+    "q048": {
+      "passed": true,
+      "verdict": "correct",
+      "hallucinated": true
+    },
+    "q049": {
+      "passed": false,
+      "verdict": "incorrect",
+      "hallucinated": true
+    },
+    "q050": {
+      "passed": false,
+      "verdict": "needs_manual_review",
+      "hallucinated": true
+    }
+  }
+}

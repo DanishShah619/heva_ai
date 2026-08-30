@@ -1,0 +1,230 @@
+{
+  "multi_fact_entailment_scoring_gap": {
+    "n_cases": 16,
+    "example_ids": [
+      "q005",
+      "q008",
+      "q033",
+      "q047",
+      "q050"
+    ],
+    "all_ids": [
+      "q005",
+      "q008",
+      "q033",
+      "q047",
+      "q050",
+      "adv_para_012",
+      "adv_para_014",
+      "adv_para_015",
+      "q008_dist_edge",
+      "q033_dist_edge",
+      "q050_dist_edge",
+      "q008_inject",
+      "q029_inject",
+      "q033_inject",
+      "q047_inject",
+      "q050_inject"
+    ],
+    "description": "NEEDS MANUAL REVIEW \u2014 did not match any defined cluster rule.",
+    "fix_proposal": "TBD after manual inspection."
+  },
+  "citation_fabrication": {
+    "n_cases": 9,
+    "example_ids": [
+      "q009",
+      "q048",
+      "adv_para_007",
+      "q003_dist_edge",
+      "q006_dist_edge"
+    ],
+    "all_ids": [
+      "q009",
+      "q048",
+      "adv_para_007",
+      "q003_dist_edge",
+      "q006_dist_edge",
+      "q029_dist_edge",
+      "q047_dist_edge",
+      "q049_dist_edge",
+      "q009_inject"
+    ],
+    "description": "The model produces a supporting_quote that does not exist verbatim (or near-verbatim) in the cited source document. This indicates the model is generating a plausible-sounding citation from its own paraphrase/summary of the content rather than actually copying text, which is a distinct failure mode from getting the underlying fact wrong.",
+    "fix_proposal": "Add a mechanical copy-check step: after generation, extract the supporting_quote and re-prompt the model with 'here is the exact text of the document you cited \u2014 does your quote appear verbatim in it? If not, correct it or say unanswerable,' as a self-verification pass before the final answer is accepted."
+  },
+  "overconfident_wrong": {
+    "n_cases": 16,
+    "example_ids": [
+      "q010",
+      "q011",
+      "q025",
+      "adv_para_011",
+      "q011_dist_edge"
+    ],
+    "all_ids": [
+      "q010",
+      "q011",
+      "q025",
+      "adv_para_011",
+      "q011_dist_edge",
+      "q012_dist_edge",
+      "q022_dist_edge",
+      "q028_dist_edge",
+      "q040_dist_edge",
+      "q041_dist_edge",
+      "q005_inject",
+      "q010_inject",
+      "q011_inject",
+      "q025_inject",
+      "q027_inject",
+      "q039_inject"
+    ],
+    "description": "The model reports high confidence (>=0.8) on an answer that is actually wrong. This is a calibration failure specifically, distinct from an accuracy failure \u2014 the model isn't just making mistakes, it's making mistakes it doesn't 'know' it's making, which is more dangerous in a production setting since it would pass any confidence-based filtering.",
+    "fix_proposal": "Recalibrate confidence via a validation-set-based mapping (e.g. Platt scaling or isotonic regression) fit on the baseline eval results, applied as a post-hoc adjustment layer rather than trusting the model's raw self-reported number directly."
+  },
+  "temporal_precedence_blindness": {
+    "n_cases": 11,
+    "example_ids": [
+      "q013",
+      "q014",
+      "q015",
+      "q042",
+      "adv_para_009"
+    ],
+    "all_ids": [
+      "q013",
+      "q014",
+      "q015",
+      "q042",
+      "adv_para_009",
+      "q013_dist_edge",
+      "q015_dist_edge",
+      "q042_dist_edge",
+      "q013_inject",
+      "q014_inject",
+      "q042_inject"
+    ],
+    "description": "The model answers using an outdated fact from an earlier document (doc_01) without checking whether a later document (doc_02) amended it. This suggests the model is not tracking document recency/precedence relationships \u2014 it treats all context as equally authoritative regardless of effective dates, likely because nothing in the prompt structurally signals which document 'wins' when two disagree.",
+    "fix_proposal": "Add an explicit 'as-of date' resolution step to the prompt: before answering, require the model to list every document that mentions the queried fact along with its effective date, then select the most recent one. Alternatively, pre-process the corpus at ingestion time to merge amendments into a single 'current state' view per fact, separate from the raw historical documents, so the model isn't required to do temporal reasoning at all."
+  },
+  "wrong_clause_attribution": {
+    "n_cases": 25,
+    "example_ids": [
+      "q016",
+      "q017",
+      "q018",
+      "q027",
+      "q031"
+    ],
+    "all_ids": [
+      "q016",
+      "q017",
+      "q018",
+      "q027",
+      "q031",
+      "q032",
+      "q043",
+      "q045",
+      "adv_para_006",
+      "adv_para_010",
+      "adv_para_013",
+      "adv_ferr_008",
+      "adv_ferr_009",
+      "q002_dist_edge",
+      "q009_dist_edge",
+      "q014_dist_edge",
+      "q016_dist_edge",
+      "q048_dist_edge",
+      "q015_inject",
+      "q016_inject",
+      "q017_inject",
+      "q018_inject",
+      "q031_inject",
+      "q032_inject",
+      "q043_inject"
+    ],
+    "description": "The model's supporting_quote is real (passes the span-existence check) but does not actually support the stated answer, OR the model accepts a wrong clause citation as correct in the citation-check-style questions. This suggests the model retrieves topically-adjacent text without verifying it actually addresses the specific question asked \u2014 attention is landing near the right area of the document but not on the precise supporting clause.",
+    "fix_proposal": "Add an explicit intermediate reasoning field to the output schema \u2014 e.g. 'relevant_clause_number' plus 'why_this_supports_the_answer' \u2014 forcing the model to articulate the logical link between quote and answer explicitly, rather than allowing quote and answer to be generated independently and only loosely related."
+  },
+  "unanswerable_overreach": {
+    "n_cases": 9,
+    "example_ids": [
+      "q020",
+      "q021",
+      "q036",
+      "q037",
+      "adv_para_016"
+    ],
+    "all_ids": [
+      "q020",
+      "q021",
+      "q036",
+      "q037",
+      "adv_para_016",
+      "q020_inject",
+      "q021_inject",
+      "q036_inject",
+      "q037_inject"
+    ],
+    "description": "The model provides a confident-sounding answer and/or citation for a question that has no support anywhere in the corpus. This suggests the model defaults to being 'helpful' by answering rather than recognizing and reporting absence \u2014 a common instruction-following gap in smaller models specifically.",
+    "fix_proposal": "Add a small number of explicit few-shot examples in the prompt showing correctly-refused unanswerable questions, since smaller instruct models often need in-context demonstration of the refusal behavior rather than a single abstract instruction to 'say unanswerable if not present.'"
+  },
+  "malformed_output": {
+    "n_cases": 3,
+    "example_ids": [
+      "q049",
+      "q012_inject",
+      "q023_inject"
+    ],
+    "all_ids": [
+      "q049",
+      "q012_inject",
+      "q023_inject"
+    ],
+    "description": "The model failed to produce parseable JSON even after the retry loop. This is a pure instruction-following/output-format reliability issue tied to model capacity (expected to be more common at 3B parameters than with a larger or hosted model), not a reasoning failure about the document content.",
+    "fix_proposal": "Switch to constrained/structured generation (e.g. a JSON-schema-constrained decoding library such as outlines or guidance) instead of relying on prompt instructions plus a text-based retry loop, which would eliminate this failure category entirely regardless of model size."
+  },
+  "adversarial_robustness_gap": {
+    "n_cases": 5,
+    "example_ids": [
+      "adv_ferr_001",
+      "adv_ferr_002",
+      "adv_ferr_004",
+      "adv_ferr_005",
+      "adv_ferr_007"
+    ],
+    "all_ids": [
+      "adv_ferr_001",
+      "adv_ferr_002",
+      "adv_ferr_004",
+      "adv_ferr_005",
+      "adv_ferr_007"
+    ],
+    "description": "The model answers a paraphrased, context-injected, or distribution-edge variant of a question incorrectly, despite answering the original clean version correctly. This indicates the model's correct answer on the clean question may reflect surface pattern-matching to the exact clean phrasing rather than robust understanding of the underlying fact.",
+    "fix_proposal": "Track a 'clean-to-adversarial consistency rate' as a first-class metric (percentage of clean-correct answers that remain correct under paraphrase/injection/distribution-edge), and treat any drop as a signal to expand few-shot examples or increase context window discipline in the prompt, not just treat each adversarial failure as an isolated data point."
+  },
+  "similar_fact_conflation": {
+    "n_cases": 2,
+    "example_ids": [
+      "adv_ferr_003",
+      "adv_ferr_006"
+    ],
+    "all_ids": [
+      "adv_ferr_003",
+      "adv_ferr_006"
+    ],
+    "description": "The model confuses two similarly-worded facts within the same document (e.g. two different interest rates for two different situations). This points to a retrieval/attention issue rather than a knowledge gap \u2014 the model has 'seen' the correct fact but attaches it to the wrong condition, likely because the two facts are lexically similar and appear in nearby or structurally parallel clauses.",
+    "fix_proposal": "Restructure the corpus documents (or add a lightweight pre-processing pass) to tag numerically similar/adjacent facts with explicit disambiguating labels close to the number itself (e.g. '18% p.a. [LATE PAYMENT INTEREST]' rather than relying on the model to infer the association from surrounding prose)."
+  },
+  "uncategorized": {
+    "n_cases": 1,
+    "example_ids": [
+      "adv_ferr_010"
+    ],
+    "all_ids": [
+      "adv_ferr_010"
+    ],
+    "description": "NEEDS MANUAL REVIEW \u2014 did not match any defined cluster rule.",
+    "fix_proposal": "TBD after manual inspection."
+  }
+}

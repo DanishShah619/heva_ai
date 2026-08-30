@@ -1,0 +1,31 @@
+{
+  "buckets": [
+    {
+      "range": "[0.00, 0.50)",
+      "n": 41,
+      "avg_confidence": 0.0,
+      "accuracy": 0.5854
+    },
+    {
+      "range": "[0.50, 0.70)",
+      "n": 0,
+      "avg_confidence": null,
+      "accuracy": null
+    },
+    {
+      "range": "[0.70, 0.85)",
+      "n": 0,
+      "avg_confidence": null,
+      "accuracy": null
+    },
+    {
+      "range": "[0.85, 1.01)",
+      "n": 127,
+      "avg_confidence": 0.998,
+      "accuracy": 0.4882
+    }
+  ],
+  "ece": 0.5283,
+  "n_missing_confidence": 3,
+  "n_used": 168
+}

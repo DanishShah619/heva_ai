@@ -167,9 +167,11 @@ def classify_failure(row, clean_lookup=None):
 
     if h_type in ("fabricated_citation", "invalid_doc_id"):
         return "citation_fabrication"
-
+    # Add a check BEFORE the wrong_clause_attribution rule:
+    if h_type == "answer_not_entailed" and category in ("derived_numeric", "disambiguation_trap", "compound_conditional"):
+     return "multi_fact_entailment_scoring_gap"  # scoring artifact, not a model failure
     if h_type == "answer_not_entailed" or category == "citation_check_fail":
-        return "wrong_clause_attribution"
+     return "wrong_clause_attribution"  # genuine model failure
 
     if category in ("disambiguation_trap", "direct_disambiguation") and not row["passed"]:
         return "similar_fact_conflation"
