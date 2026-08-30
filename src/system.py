@@ -1,10 +1,4 @@
-# system.py
-# System under test: grounded QA over the fixed lease-document corpus.
-# Model: Qwen/Qwen2.5-3B-Instruct, 4-bit quantized, greedy decoding for determinism.
-#
-# COLAB SETUP (run this first, in its own cell):
-#   !pip install transformers accelerate bitsandbytes -q
-#   Runtime -> Change runtime type -> T4 GPU (must be selected before loading the model)
+
 
 import glob
 import json
