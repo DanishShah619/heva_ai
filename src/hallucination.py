@@ -22,7 +22,11 @@ def check_span_exists(quote, doc_text, fuzzy_threshold=0.9, window_stride=20):
 
     if norm_quote in norm_doc:
         return True
-
+    quote_numbers = set(re.findall(r"\d[\d,]*\.?\d*", norm_quote))
+    if quote_numbers:
+        doc_numbers = set(re.findall(r"\d[\d,]*\.?\d*", norm_doc))
+        if not quote_numbers.issubset(doc_numbers):
+            return False
   
     n = len(norm_quote)
     if n == 0:
