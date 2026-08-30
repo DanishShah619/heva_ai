@@ -17,8 +17,8 @@ def check_span_exists(quote, doc_text, fuzzy_threshold=0.9, window_stride=20):
     if quote is None:
         return None
 
-    norm_quote = " ".join(quote.split())
-    norm_doc = " ".join(doc_text.split())
+    norm_quote = " ".join(quote.replace("**", "").split())
+    norm_doc = " ".join(doc_text.replace("**", "").split())
 
     if norm_quote in norm_doc:
         return True
